@@ -15,8 +15,51 @@ package MapEditor
 	import flash.net.URLRequest;
 	import MapEditor.Resource;
 	
+	/*
+		 * ТАБЛИЦА ЗНАЧЕНИЙ РЕДАКТОРА
+		 * -------------------------------------
+		 * 1. Номер уровня: 0
+		 * 2. Номер локации: 0
+		 * 3. Тип уровня: 
+				"Собрать кристалы" - "LEVEL_TYPE_COLLECT" 
+				"Набрать очки" - "LEVEL_TYPE_SCORE_POINTS" 
+				"Спустить объект" - "LEVEL_TYPE_DROP_OBJECT" 
+				"На время" - "LEVEL_TYPE_TIME"
+		 * 4. Тип кристала:
+				"Все кристалы" - "CRYSTAL_TYPE_ALL"
+				"1-Фиолетовый" - "CRYSTAL_TYPE_1_VIOLET" 
+				"2-Зеленый" - "CRYSTAL_TYPE_2_GREEN" 
+				"3-Красный" - "CRYSTAL_TYPE_3_RED" 
+				"4-Синий" - "CRYSTAL_TYPE_4_BLUE" 
+				"5-Желтый" - "CRYSTAL_TYPE_5_YELLOW" 
+		 * 5. Количество кристалов: 0
+		 * 6. Количество очков: 0
+		 * 7. Время на уровне: 0
+		 * 8. Количество ходов: 0
+		 * 9. Имя картинки атласа: *.png
+		 * 10. Имя xml файла атласа: *.xml
+		 * 11. Тип ячейки:
+				"Нет ячейки" - "CELL_TYPE_EMPTY"
+				"Пустая ячейка" - "CELL_TYPE_CLEAR"
+				"Место спуска" - "CELL_TYPE_DROP"
+		 * 12. Тип объекта в ячейке
+				"1-Фиолетовый" - "CRYSTAL_TYPE_1_VIOLET" 
+				"2-Зеленый" - "CRYSTAL_TYPE_2_GREEN" 
+				"3-Красный" - "CRYSTAL_TYPE_3_RED" 
+				"4-Синий" - "CRYSTAL_TYPE_4_BLUE" 
+				"5-Желтый" - "CRYStAL_TYPE_5_YELLOW"
+				"6-Линейный кристал вертикаль" - "CRYStAL_TYPE_6_LINE_UPRIGHT"
+				"7-Линейный кристал горизонталь" - "CRYStAL_TYPE_7_HORIZONTALLY"
+				"8-Супер кристал" - "CRYStAL_TYPE_8_SUPER"
+				"9-Камень" - "CRYStAL_TYPE_9_STONE"
+				"10-Руна" - "CRYStAL_TYPE_10_RUNE"
+		 * 
+		 * -------------------------------------
+		 * */
+	
 	public class Editor extends Sprite 
 	{
+		
 		private var levelType:Array = new Array( 
 			{label:"Собрать кристалы", data:"LEVEL_TYPE_COLLECT"}, 
 			{label:"Набрать очки", data:"LEVEL_TYPE_SCORE_POINTS"}, 
@@ -30,7 +73,7 @@ package MapEditor
 			{label:"2-Зеленый", data:"CRYSTAL_TYPE_2_GREEN"}, 
 			{label:"3-Красный", data:"CRYSTAL_TYPE_3_RED"}, 
 			{label:"4-Синий", data:"CRYSTAL_TYPE_4_BLUE" }, 
-			{label:"5-Желтый", data:"CRYStAL_TYPE_5_YELLOW"} 
+			{label:"5-Желтый", data:"CRYSTAL_TYPE_5_YELLOW"} 
 		);
 		
 		private var button1:Button = new Button();

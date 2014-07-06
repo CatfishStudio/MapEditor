@@ -5,37 +5,26 @@ package MapEditor
 	
 	public class Resource 
 	{
-		
 		[Embed(source = '../../images/crystal_1_50_50.png')]
 		public static var CImage1:Class;
-				
 		[Embed(source = '../../images/crystal_2_50_50.png')]
 		public static var CImage2:Class;
-		
 		[Embed(source = '../../images/crystal_3_50_50.png')]
 		public static var CImage3:Class;
-		
 		[Embed(source = '../../images/crystal_4_50_50.png')]
 		public static var CImage4:Class;
-		
 		[Embed(source = '../../images/crystal_5_50_50.png')]
 		public static var CImage5:Class;
-		
 		[Embed(source = '../../images/cursor.png')]
 		public static var CursorImage:Class;
-		
 		[Embed(source = '../../images/cell.png')]
 		public static var CellClearImage:Class;
-		
 		[Embed(source = '../../images/drop.png')]
 		public static var DropImage:Class;
-		
 		[Embed(source = '../../images/empty.png')]
 		public static var EmptyImage:Class;
-		
 		[Embed(source = '../../images/rune.png')]
 		public static var RuneImage:Class;
-		
 		[Embed(source = '../../images/stone.png')]
 		public static var StoneImage:Class;
 		
