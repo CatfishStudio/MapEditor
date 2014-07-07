@@ -7,14 +7,50 @@ package MapEditor
 	{
 		[Embed(source = '../../images/crystal_1_50_50.png')]
 		public static var CImage1:Class;
+		[Embed(source = '../../images/crystal_1_50_50_line_horizontally.png')]
+		public static var CLHImage1:Class;
+		[Embed(source = '../../images/crystal_1_50_50_line_upright.png')]
+		public static var CLUImage1:Class;
+		[Embed(source = '../../images/crystal_1_50_50_Super.png')]
+		public static var CSImage1:Class;
+		
 		[Embed(source = '../../images/crystal_2_50_50.png')]
 		public static var CImage2:Class;
+		[Embed(source = '../../images/crystal_2_50_50_line_horizontally.png')]
+		public static var CLHImage2:Class;
+		[Embed(source = '../../images/crystal_2_50_50_line_upright.png')]
+		public static var CLUImage2:Class;
+		[Embed(source = '../../images/crystal_2_50_50_Super.png')]
+		public static var CSImage2:Class;
+		
 		[Embed(source = '../../images/crystal_3_50_50.png')]
 		public static var CImage3:Class;
+		[Embed(source = '../../images/crystal_3_50_50_line_horizontally.png')]
+		public static var CLHImage3:Class;
+		[Embed(source = '../../images/crystal_3_50_50_line_upright.png')]
+		public static var CLUImage3:Class;
+		[Embed(source = '../../images/crystal_3_50_50_Super.png')]
+		public static var CSImage3:Class;
+		
 		[Embed(source = '../../images/crystal_4_50_50.png')]
 		public static var CImage4:Class;
+		[Embed(source = '../../images/crystal_4_50_50_line_horizontally.png')]
+		public static var CLHImage4:Class;
+		[Embed(source = '../../images/crystal_4_50_50_line_upright.png')]
+		public static var CLUImage4:Class;
+		[Embed(source = '../../images/crystal_4_50_50_Super.png')]
+		public static var CSImage4:Class;
+		
 		[Embed(source = '../../images/crystal_5_50_50.png')]
 		public static var CImage5:Class;
+		[Embed(source = '../../images/crystal_5_50_50_line_horizontally.png')]
+		public static var CLHImage5:Class;
+		[Embed(source = '../../images/crystal_5_50_50_line_upright.png')]
+		public static var CLUImage5:Class;
+		[Embed(source = '../../images/crystal_5_50_50_Super.png')]
+		public static var CSImage5:Class;
+		
+		
 		[Embed(source = '../../images/cursor.png')]
 		public static var CursorImage:Class;
 		[Embed(source = '../../images/cell.png')]

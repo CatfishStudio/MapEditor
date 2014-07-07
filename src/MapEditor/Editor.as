@@ -99,33 +99,7 @@ package MapEditor
 		private var label10:Label = new Label();
 		private var textBox10:TextInput = new TextInput();
 		
-		private var label11:Label = new Label();
-		private var cursor:Bitmap = new Resource.CursorImage();
-		private var sCursor:Sprite = new Sprite();
-		
-		private var crystal1:Bitmap = new Resource.CImage1();
-		private var sCrystal1:Sprite = new Sprite();
-		private var crystal2:Bitmap = new Resource.CImage2();
-		private var sCrystal2:Sprite = new Sprite();
-		private var crystal3:Bitmap = new Resource.CImage3();
-		private var sCrystal3:Sprite = new Sprite();
-		private var crystal4:Bitmap = new Resource.CImage4();
-		private var sCrystal4:Sprite = new Sprite();
-		private var crystal5:Bitmap = new Resource.CImage5();
-		private var sCrystal5:Sprite = new Sprite();
-		
-		
-		private var cell:Bitmap = new Resource.CellClearImage();
-		private var sCell:Sprite = new Sprite();
-		private var empty:Bitmap = new Resource.EmptyImage();
-		private var sEmpty:Sprite = new Sprite();
-		private var drop:Bitmap = new Resource.DropImage();
-		private var sDrop:Sprite = new Sprite();
-		private var rune:Bitmap = new Resource.RuneImage();
-		private var sRune:Sprite = new Sprite();
-		private var stone:Bitmap = new Resource.StoneImage();
-		private var sStone:Sprite = new Sprite();
-		
+				
 		private var label12:Label = new Label();
 		private var comboBox10:ComboBox = new ComboBox();
 		private var comboBox11:ComboBox = new ComboBox();
@@ -269,60 +243,8 @@ package MapEditor
 			textBox10.width = 200;
 			this.addChild(textBox10);
 			
-			/* ОБЪЕКТЫ: -------------------------------------------------------*/
-			/* Метка */
-			label11.text = "Объекты:";
-			label11.x = 950; label11.y = 00;
-			this.addChild(label11);
-			/* Кристалы */
-			sCursor.addChild(cursor);
-			sCursor.x = 950; sCursor.y = 25;
-			//sCursor.addEventListener(MouseEvent.CLICK, onMouseClickCursor);
-			sCursor.addEventListener(MouseEvent.MOUSE_OUT, onMouseOut);
-			sCursor.addEventListener(MouseEvent.MOUSE_OVER, onMouseOver);
-			this.addChild(sCursor);
-			
-			sCrystal1.addChild(crystal1);
-			sCrystal1.x = 950; sCrystal1.y = 100;
-			this.addChild(sCrystal1);
-			
-			sCrystal2.addChild(crystal2);
-			sCrystal2.x = 950; sCrystal2.y = 150;
-			this.addChild(sCrystal2);
-			
-			sCrystal3.addChild(crystal3);
-			sCrystal3.x = 950; sCrystal3.y = 200;
-			this.addChild(sCrystal3);
-			
-			sCrystal4.addChild(crystal4);
-			sCrystal4.x = 950; sCrystal4.y = 250;
-			this.addChild(sCrystal4);
-			
-			sCrystal5.addChild(crystal5);
-			sCrystal5.x = 950; sCrystal5.y = 300;
-			this.addChild(sCrystal5);
-			
-			/* Ячейки и объекты */
-			sCell.addChild(cell);
-			sCell.x = 950; sCell.y = 400;
-			this.addChild(sCell);
-			
-			sEmpty.addChild(empty);
-			sEmpty.x = 950; sEmpty.y = 460;
-			this.addChild(sEmpty);
-			
-			sDrop.addChild(drop);
-			sDrop.x = 950; sDrop.y = 520;
-			this.addChild(sDrop);
-			
-			sRune.addChild(rune);
-			sRune.x = 950; sRune.y = 580;
-			this.addChild(sRune);
-			
-			sStone.addChild(stone);
-			sStone.x = 950; sStone.y = 640;
-			this.addChild(sStone);
-			/*---------------------------------------------------------------------------------*/
+			/* ПАНЕЛЬ ОБЪЕКТОВ */
+			this.addChild(new PanelObjects());
 			
 			/* ИГРОВОЕ ПОЛЕ */
 			Resource.MatrixCell =  Resource.CreateVectorMatrix2D(10, 10);
