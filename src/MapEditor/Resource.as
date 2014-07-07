@@ -28,6 +28,25 @@ package MapEditor
 		[Embed(source = '../../images/stone.png')]
 		public static var StoneImage:Class;
 		
+		public static var levelType:Array = new Array( 
+			{label:"Собрать кристалы", data:"LEVEL_TYPE_COLLECT"}, 
+			{label:"Набрать очки", data:"LEVEL_TYPE_SCORE_POINTS"}, 
+			{label:"Спустить объект", data:"LEVEL_TYPE_DROP_OBJECT"}, 
+			{label:"На время", data:"LEVEL_TYPE_TIME"} 
+		); 
+		
+		public static var crystalType:Array = new Array( 
+			{label:"Все кристалы", data:"CRYSTAL_TYPE_ALL"},
+			{label:"1-Фиолетовый", data:"CRYSTAL_TYPE_1_VIOLET"}, 
+			{label:"2-Зеленый", data:"CRYSTAL_TYPE_2_GREEN"}, 
+			{label:"3-Красный", data:"CRYSTAL_TYPE_3_RED"}, 
+			{label:"4-Синий", data:"CRYSTAL_TYPE_4_BLUE" }, 
+			{label:"5-Желтый", data:"CRYSTAL_TYPE_5_YELLOW"} 
+		);
+		
+		/* Выбраный объект */
+		public static var SelectObject:String = "SELECT_NO_OBJECT";
+		
 		/* Параметры редактируемого уровня */
 		public static var Level:String;			// номер уровня
 		public static var Location:String;		// номер локации
@@ -39,6 +58,18 @@ package MapEditor
 		public static var AmountMoves:String;	// количество ходов
 		public static var FileAtlas:String;		// имя файла атласа
 		public static var FileAtlasXML:String;	// имя файла атласа xml
+		public static var IntensityColumn0:String;	// интенсивность выпадения кристалов колонка 0
+		public static var IntensityColumn1:String;	// интенсивность выпадения кристалов колонка 1
+		public static var IntensityColumn2:String;	// интенсивность выпадения кристалов колонка 2
+		public static var IntensityColumn3:String;	// интенсивность выпадения кристалов колонка 3
+		public static var IntensityColumn4:String;	// интенсивность выпадения кристалов колонка 4
+		public static var IntensityColumn5:String;	// интенсивность выпадения кристалов колонка 5
+		public static var IntensityColumn6:String;	// интенсивность выпадения кристалов колонка 6
+		public static var IntensityColumn7:String;	// интенсивность выпадения кристалов колонка 7
+		public static var IntensityColumn8:String;	// интенсивность выпадения кристалов колонка 8
+		public static var IntensityColumn9:String;	// интенсивность выпадения кристалов колонка 9
+		
+		
 		
 		public static var MatrixCell:Vector.<Vector.<FieldCell>>;
 		

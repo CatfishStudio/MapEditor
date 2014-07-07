@@ -7,6 +7,9 @@ package MapEditor
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
+	import flash.ui.Mouse;
+	import flash.ui.MouseCursor;
 	import fl.data.DataProvider; 
 	import fl.events.ComponentEvent;
 	import flash.events.MouseEvent;
@@ -43,6 +46,7 @@ package MapEditor
 				"Пустая ячейка" - "CELL_TYPE_CLEAR"
 				"Место спуска" - "CELL_TYPE_DROP"
 		 * 12. Тип объекта в ячейке
+				"нет объекта" - "CRYSTAL_TYPE_0_NO_OBJECT"
 				"1-Фиолетовый" - "CRYSTAL_TYPE_1_VIOLET" 
 				"2-Зеленый" - "CRYSTAL_TYPE_2_GREEN" 
 				"3-Красный" - "CRYSTAL_TYPE_3_RED" 
@@ -53,29 +57,19 @@ package MapEditor
 				"8-Супер кристал" - "CRYStAL_TYPE_8_SUPER"
 				"9-Камень" - "CRYStAL_TYPE_9_STONE"
 				"10-Руна" - "CRYStAL_TYPE_10_RUNE"
+		 * 13. Интенсивность выпадения кристалов
+				"Все кристалы" - "CRYSTAL_TYPE_ALL"
+				"1-Фиолетовый" - "CRYSTAL_TYPE_1_VIOLET" 
+				"2-Зеленый" - "CRYSTAL_TYPE_2_GREEN" 
+				"3-Красный" - "CRYSTAL_TYPE_3_RED" 
+				"4-Синий" - "CRYSTAL_TYPE_4_BLUE" 
+				"5-Желтый" - "CRYSTAL_TYPE_5_YELLOW"
 		 * 
 		 * -------------------------------------
 		 * */
 	
 	public class Editor extends Sprite 
 	{
-		
-		private var levelType:Array = new Array( 
-			{label:"Собрать кристалы", data:"LEVEL_TYPE_COLLECT"}, 
-			{label:"Набрать очки", data:"LEVEL_TYPE_SCORE_POINTS"}, 
-			{label:"Спустить объект", data:"LEVEL_TYPE_DROP_OBJECT"}, 
-			{label:"На время", data:"LEVEL_TYPE_TIME"} 
-		); 
-		
-		private var crystalType:Array = new Array( 
-			{label:"Все кристалы", data:"CRYSTAL_TYPE_ALL"},
-			{label:"1-Фиолетовый", data:"CRYSTAL_TYPE_1_VIOLET"}, 
-			{label:"2-Зеленый", data:"CRYSTAL_TYPE_2_GREEN"}, 
-			{label:"3-Красный", data:"CRYSTAL_TYPE_3_RED"}, 
-			{label:"4-Синий", data:"CRYSTAL_TYPE_4_BLUE" }, 
-			{label:"5-Желтый", data:"CRYSTAL_TYPE_5_YELLOW"} 
-		);
-		
 		private var button1:Button = new Button();
 		private var button2:Button = new Button();
 		private var label1:Label = new Label();
@@ -98,19 +92,42 @@ package MapEditor
 		private var textBox9:TextInput = new TextInput();
 		private var label10:Label = new Label();
 		private var textBox10:TextInput = new TextInput();
+		
 		private var label11:Label = new Label();
 		private var cursor:Bitmap = new Resource.CursorImage();
+		private var sCursor:Sprite = new Sprite();
 		private var crystal1:Bitmap = new Resource.CImage1();
+		private var sCrystal1:Sprite = new Sprite();
 		private var crystal2:Bitmap = new Resource.CImage2();
+		private var sCrystal2:Sprite = new Sprite();
 		private var crystal3:Bitmap = new Resource.CImage3();
+		private var sCrystal3:Sprite = new Sprite();
 		private var crystal4:Bitmap = new Resource.CImage4();
+		private var sCrystal4:Sprite = new Sprite();
 		private var crystal5:Bitmap = new Resource.CImage5();
+		private var sCrystal5:Sprite = new Sprite();
 		private var cell:Bitmap = new Resource.CellClearImage();
+		private var sCell:Sprite = new Sprite();
 		private var empty:Bitmap = new Resource.EmptyImage();
+		private var sEmpty:Sprite = new Sprite();
 		private var drop:Bitmap = new Resource.DropImage();
+		private var sDrop:Sprite = new Sprite();
 		private var rune:Bitmap = new Resource.RuneImage();
+		private var sRune:Sprite = new Sprite();
 		private var stone:Bitmap = new Resource.StoneImage();
+		private var sStone:Sprite = new Sprite();
 		
+		private var label12:Label = new Label();
+		private var comboBox10:ComboBox = new ComboBox();
+		private var comboBox11:ComboBox = new ComboBox();
+		private var comboBox12:ComboBox = new ComboBox();
+		private var comboBox13:ComboBox = new ComboBox();
+		private var comboBox14:ComboBox = new ComboBox();
+		private var comboBox15:ComboBox = new ComboBox();
+		private var comboBox16:ComboBox = new ComboBox();
+		private var comboBox17:ComboBox = new ComboBox();
+		private var comboBox18:ComboBox = new ComboBox();
+		private var comboBox19:ComboBox = new ComboBox();
 		
 		public function Editor() 
 		{
@@ -164,7 +181,7 @@ package MapEditor
 			//comboBox1.move(150, 50);
 			comboBox1.selectedIndex = 0;
 			//comboBox1.prompt = "Собрать кристалы"; 
-			comboBox1.dataProvider = new DataProvider(levelType); 
+			comboBox1.dataProvider = new DataProvider(Resource.levelType); 
 			comboBox1.addEventListener(Event.CHANGE, changeHandler1); 
 			this.addChild(comboBox1);
 			
@@ -178,7 +195,7 @@ package MapEditor
 			comboBox2.dropdownWidth = 210; 
 			comboBox2.width = 200;  
 			comboBox2.selectedIndex = 0;
-			comboBox2.dataProvider = new DataProvider(crystalType); 
+			comboBox2.dataProvider = new DataProvider(Resource.crystalType); 
 			comboBox2.addEventListener(Event.CHANGE, changeHandler2);
 			this.addChild(comboBox2);
 			
@@ -243,39 +260,129 @@ package MapEditor
 			textBox10.width = 200;
 			this.addChild(textBox10);
 			
-			/* ОБЪЕКТЫ: */
+			/* ОБЪЕКТЫ: -------------------------------------------------------*/
 			/* Метка */
 			label11.text = "Объекты:";
 			label11.x = 950; label11.y = 00;
 			this.addChild(label11);
 			/* Кристалы */
-			cursor.x = 950; cursor.y = 25;
-			this.addChild(cursor);
-			crystal1.x = 950; crystal1.y = 100;
-			this.addChild(crystal1);
-			crystal2.x = 950; crystal2.y = 150;
-			this.addChild(crystal2);
-			crystal3.x = 950; crystal3.y = 200;
-			this.addChild(crystal3);
-			crystal4.x = 950; crystal4.y = 250;
-			this.addChild(crystal4);
-			crystal5.x = 950; crystal5.y = 300;
-			this.addChild(crystal5);
-			/* Ячейки */
-			cell.x = 950; cell.y = 400;
-			this.addChild(cell);
-			empty.x = 950; empty.y = 460;
-			this.addChild(empty);
-			drop.x = 950; drop.y = 520;
-			this.addChild(drop);
-			rune.x = 950; rune.y = 580;
-			this.addChild(rune);
-			stone.x = 950; stone.y = 640;
-			this.addChild(stone);
+			sCursor.addChild(cursor);
+			sCursor.x = 950; sCursor.y = 25;
+			//sCursor.addEventListener(MouseEvent.CLICK, onMouseClickCursor);
+			sCursor.addEventListener(MouseEvent.MOUSE_OUT, onMouseOut);
+			sCursor.addEventListener(MouseEvent.MOUSE_OVER, onMouseOver);
+			this.addChild(sCursor);
+			
+			sCrystal1.addChild(crystal1);
+			sCrystal1.x = 950; sCrystal1.y = 100;
+			this.addChild(sCrystal1);
+			
+			sCrystal2.addChild(crystal2);
+			sCrystal2.x = 950; sCrystal2.y = 150;
+			this.addChild(sCrystal2);
+			
+			sCrystal3.addChild(crystal3);
+			sCrystal3.x = 950; sCrystal3.y = 200;
+			this.addChild(sCrystal3);
+			
+			sCrystal4.addChild(crystal4);
+			sCrystal4.x = 950; sCrystal4.y = 250;
+			this.addChild(sCrystal4);
+			
+			sCrystal5.addChild(crystal5);
+			sCrystal5.x = 950; sCrystal5.y = 300;
+			this.addChild(sCrystal5);
+			
+			/* Ячейки и объекты */
+			sCell.addChild(cell);
+			sCell.x = 950; sCell.y = 400;
+			this.addChild(sCell);
+			
+			sEmpty.addChild(empty);
+			sEmpty.x = 950; sEmpty.y = 460;
+			this.addChild(sEmpty);
+			
+			sDrop.addChild(drop);
+			sDrop.x = 950; sDrop.y = 520;
+			this.addChild(sDrop);
+			
+			sRune.addChild(rune);
+			sRune.x = 950; sRune.y = 580;
+			this.addChild(sRune);
+			
+			sStone.addChild(stone);
+			sStone.x = 950; sStone.y = 640;
+			this.addChild(sStone);
+			/*---------------------------------------------------------------------------------*/
 			
 			/* ИГРОВОЕ ПОЛЕ */
 			Resource.MatrixCell =  Resource.CreateVectorMatrix2D(10, 10);
 			showField(10, 10);
+			
+			/* Метка */
+			label12.text = "Интенсивность выпадения кристалов:";
+			label12.x = 300; label12.y = 550; label12.width = 300;
+			this.addChild(label12);
+			/* Интентивность колонки */
+			comboBox10.x = 300; comboBox10.y = 570;
+			comboBox10.dropdownWidth = 50; 	comboBox10.width = 50;  
+			comboBox10.selectedIndex = 0; comboBox10.dataProvider = new DataProvider(Resource.crystalType); 
+			comboBox10.addEventListener(Event.CHANGE, changeHandler10);
+			this.addChild(comboBox10);
+			/* Интентивность колонки */
+			comboBox11.x = 350; comboBox11.y = 570;
+			comboBox11.dropdownWidth = 50; 	comboBox11.width = 50;  
+			comboBox11.selectedIndex = 0; comboBox11.dataProvider = new DataProvider(Resource.crystalType); 
+			comboBox11.addEventListener(Event.CHANGE, changeHandler11);
+			this.addChild(comboBox11);
+			/* Интентивность колонки */
+			comboBox12.x = 400; comboBox12.y = 570;
+			comboBox12.dropdownWidth = 50; 	comboBox12.width = 50;  
+			comboBox12.selectedIndex = 0; comboBox12.dataProvider = new DataProvider(Resource.crystalType); 
+			comboBox12.addEventListener(Event.CHANGE, changeHandler12);
+			this.addChild(comboBox12);
+			/* Интентивность колонки */
+			comboBox13.x = 450; comboBox13.y = 570;
+			comboBox13.dropdownWidth = 50; 	comboBox13.width = 50;  
+			comboBox13.selectedIndex = 0; comboBox13.dataProvider = new DataProvider(Resource.crystalType); 
+			comboBox13.addEventListener(Event.CHANGE, changeHandler13);
+			this.addChild(comboBox13);
+			/* Интентивность колонки */
+			comboBox14.x = 500; comboBox14.y = 570;
+			comboBox14.dropdownWidth = 50; 	comboBox14.width = 50;  
+			comboBox14.selectedIndex = 0; comboBox14.dataProvider = new DataProvider(Resource.crystalType); 
+			comboBox14.addEventListener(Event.CHANGE, changeHandler14);
+			this.addChild(comboBox14);
+			/* Интентивность колонки */
+			comboBox15.x = 550; comboBox15.y = 570;
+			comboBox15.dropdownWidth = 50; 	comboBox15.width = 50;  
+			comboBox15.selectedIndex = 0; comboBox15.dataProvider = new DataProvider(Resource.crystalType); 
+			comboBox15.addEventListener(Event.CHANGE, changeHandler15);
+			this.addChild(comboBox15);
+			/* Интентивность колонки */
+			comboBox16.x = 600; comboBox16.y = 570;
+			comboBox16.dropdownWidth = 50; 	comboBox16.width = 50;  
+			comboBox16.selectedIndex = 0; comboBox16.dataProvider = new DataProvider(Resource.crystalType); 
+			comboBox16.addEventListener(Event.CHANGE, changeHandler16);
+			this.addChild(comboBox16);
+			/* Интентивность колонки */
+			comboBox17.x = 650; comboBox17.y = 570;
+			comboBox17.dropdownWidth = 50; 	comboBox17.width = 50;  
+			comboBox17.selectedIndex = 0; comboBox17.dataProvider = new DataProvider(Resource.crystalType); 
+			comboBox17.addEventListener(Event.CHANGE, changeHandler17);
+			this.addChild(comboBox17);
+			/* Интентивность колонки */
+			comboBox18.x = 700; comboBox18.y = 570;
+			comboBox18.dropdownWidth = 50; 	comboBox18.width = 50;  
+			comboBox18.selectedIndex = 0; comboBox18.dataProvider = new DataProvider(Resource.crystalType); 
+			comboBox18.addEventListener(Event.CHANGE, changeHandler18);
+			this.addChild(comboBox18);
+			/* Интентивность колонки */
+			comboBox19.x = 750; comboBox19.y = 570;
+			comboBox19.dropdownWidth = 50; 	comboBox19.width = 50;  
+			comboBox19.selectedIndex = 0; comboBox19.dataProvider = new DataProvider(Resource.crystalType); 
+			comboBox19.addEventListener(Event.CHANGE, changeHandler19);
+			this.addChild(comboBox19);
 		}
 		
 		private function onButton1MouseClick(e:MouseEvent):void 
@@ -321,10 +428,74 @@ package MapEditor
 		
 		private function changeHandler2(e:Event):void 
 		{
-			Resource.CrystalType = ComboBox(e.target).selectedItem.data;
+			//Resource.CrystalType = ComboBox(e.target).selectedItem.data;
 			comboBox2.text = ComboBox(e.target).selectedItem.label;
 		}
 		
+		
+		private function changeHandler19(e:Event):void 
+		{
+			comboBox19.text = ComboBox(e.target).selectedItem.label;
+		}
+		
+		private function changeHandler18(e:Event):void 
+		{
+			comboBox18.text = ComboBox(e.target).selectedItem.label;
+		}
+		
+		private function changeHandler17(e:Event):void 
+		{
+			comboBox17.text = ComboBox(e.target).selectedItem.label;
+		}
+		
+		private function changeHandler16(e:Event):void 
+		{
+			comboBox16.text = ComboBox(e.target).selectedItem.label;
+		}
+		
+		private function changeHandler15(e:Event):void 
+		{
+			comboBox15.text = ComboBox(e.target).selectedItem.label;
+		}
+		
+		private function changeHandler14(e:Event):void 
+		{
+			comboBox14.text = ComboBox(e.target).selectedItem.label;
+		}
+		
+		private function changeHandler13(e:Event):void 
+		{
+			comboBox13.text = ComboBox(e.target).selectedItem.label;
+		}
+		
+		private function changeHandler12(e:Event):void 
+		{
+			comboBox12.text = ComboBox(e.target).selectedItem.label;
+		}
+		
+		private function changeHandler11(e:Event):void 
+		{
+			comboBox11.text = ComboBox(e.target).selectedItem.label;
+		}
+		
+		private function changeHandler10(e:Event):void 
+		{
+			comboBox10.text = ComboBox(e.target).selectedItem.label;
+		}
+		
+		
+		/* Общие события мыши */
+		private function onMouseOver(e:MouseEvent):void 
+		{
+			Mouse.cursor = MouseCursor.BUTTON;
+		}
+		
+		private function onMouseOut(e:MouseEvent):void 
+		{
+			Mouse.cursor = MouseCursor.AUTO;
+		}
+		
+		/* Отобразить игровое поле */
 		private function showField(_columns:uint, _rows:uint):void
 		{
 			/* i - столбец; j - строка */
