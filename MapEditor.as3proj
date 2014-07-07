@@ -84,6 +84,16 @@
     <asset path="images\crystal_3_50_50_Super.png" />
     <asset path="images\crystal_4_50_50_Super.png" />
     <asset path="images\crystal_5_50_50_Super.png" />
+    <asset path="images\crystal_1_50_50_line_horizontally.png" />
+    <asset path="images\crystal_1_50_50_line_upright.png" />
+    <asset path="images\crystal_2_50_50_line_horizontally.png" />
+    <asset path="images\crystal_2_50_50_line_upright.png" />
+    <asset path="images\crystal_3_50_50_line_horizontally.png" />
+    <asset path="images\crystal_3_50_50_line_upright.png" />
+    <asset path="images\crystal_4_50_50_line_horizontally.png" />
+    <asset path="images\crystal_4_50_50_line_upright.png" />
+    <asset path="images\crystal_5_50_50_line_horizontally.png" />
+    <asset path="images\crystal_5_50_50_line_upright.png" />
   </library>
   <!-- Class files to compile (other referenced classes will automatically be included) -->
   <compileTargets>

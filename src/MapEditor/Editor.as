@@ -35,6 +35,9 @@ package MapEditor
 				"3-Красный" - "CRYSTAL_TYPE_3_RED" 
 				"4-Синий" - "CRYSTAL_TYPE_4_BLUE" 
 				"5-Желтый" - "CRYSTAL_TYPE_5_YELLOW" 
+				"6-Линейный кристал вертикаль" - "CRYSTAL_TYPE_6_LINE_UPRIGHT"
+				"7-Линейный кристал горизонталь" - "CRYSTAL_TYPE_7_LINE_HORIZONTALLY"
+				"8-Супер кристал" - "CRYSTAL_TYPE_8_SUPER"
 		 * 5. Количество кристалов: 0
 		 * 6. Количество очков: 0
 		 * 7. Время на уровне: 0
@@ -53,7 +56,7 @@ package MapEditor
 				"4-Синий" - "CRYSTAL_TYPE_4_BLUE" 
 				"5-Желтый" - "CRYSTAL_TYPE_5_YELLOW"
 				"6-Линейный кристал вертикаль" - "CRYSTAL_TYPE_6_LINE_UPRIGHT"
-				"7-Линейный кристал горизонталь" - "CRYSTAL_TYPE_7_HORIZONTALLY"
+				"7-Линейный кристал горизонталь" - "CRYSTAL_TYPE_7_LINE_HORIZONTALLY"
 				"8-Супер кристал" - "CRYSTAL_TYPE_8_SUPER"
 				"9-Камень" - "CRYSTAL_TYPE_9_STONE"
 				"10-Руна" - "CRYSTAL_TYPE_10_RUNE"
@@ -64,6 +67,9 @@ package MapEditor
 				"3-Красный" - "CRYSTAL_TYPE_3_RED" 
 				"4-Синий" - "CRYSTAL_TYPE_4_BLUE" 
 				"5-Желтый" - "CRYSTAL_TYPE_5_YELLOW"
+				"6-Линейный кристал вертикаль" - "CRYSTAL_TYPE_6_LINE_UPRIGHT"
+				"7-Линейный кристал горизонталь" - "CRYSTAL_TYPE_7_LINE_HORIZONTALLY"
+				"8-Супер кристал" - "CRYSTAL_TYPE_8_SUPER"
 		 * 
 		 * -------------------------------------
 		 * */
@@ -96,6 +102,7 @@ package MapEditor
 		private var label11:Label = new Label();
 		private var cursor:Bitmap = new Resource.CursorImage();
 		private var sCursor:Sprite = new Sprite();
+		
 		private var crystal1:Bitmap = new Resource.CImage1();
 		private var sCrystal1:Sprite = new Sprite();
 		private var crystal2:Bitmap = new Resource.CImage2();
@@ -106,6 +113,8 @@ package MapEditor
 		private var sCrystal4:Sprite = new Sprite();
 		private var crystal5:Bitmap = new Resource.CImage5();
 		private var sCrystal5:Sprite = new Sprite();
+		
+		
 		private var cell:Bitmap = new Resource.CellClearImage();
 		private var sCell:Sprite = new Sprite();
 		private var empty:Bitmap = new Resource.EmptyImage();

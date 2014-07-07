@@ -42,7 +42,7 @@ package MapEditor
 			{label:"3-Красный", data:"CRYSTAL_TYPE_3_RED"}, 
 			{label:"4-Синий", data:"CRYSTAL_TYPE_4_BLUE" }, 
 			{label:"6-Линейный вертикаль", data:"CRYSTAL_TYPE_6_LINE_UPRIGHT"},
-			{label:"7-Линейный горизонталь", data:"CRYSTAL_TYPE_7_HORIZONTALLY"},
+			{label:"7-Линейный горизонталь", data:"CRYSTAL_TYPE_7_LINE_HORIZONTALLY"},
 			{label:"8-Супер кристал", data:"CRYSTAL_TYPE_8_SUPER"}
 		);
 		
