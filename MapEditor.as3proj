@@ -79,6 +79,11 @@
     <asset path="images\drop.png" />
     <asset path="images\rune.png" />
     <asset path="images\stone.png" />
+    <asset path="images\crystal_1_50_50_Super.png" />
+    <asset path="images\crystal_2_50_50_Super.png" />
+    <asset path="images\crystal_3_50_50_Super.png" />
+    <asset path="images\crystal_4_50_50_Super.png" />
+    <asset path="images\crystal_5_50_50_Super.png" />
   </library>
   <!-- Class files to compile (other referenced classes will automatically be included) -->
   <compileTargets>
