@@ -30,16 +30,17 @@ package MapEditor
 		 * 
 		 * */
 		
-		private var cell:Bitmap = new Resource.CellClearImage();
-		public var cellType:String = "CELL_TYPE_CLEAR";	
-		public var cellObject:String = "CRYSTAL_TYPE_1_NO_OBJECT";
+		private var _cell:Bitmap = new Resource.CellClearImage();	// ячейка
+		private var _object:Bitmap;
+		public var cellType:String = "CELL_TYPE_CLEAR";				// тип ячейки
+		public var cellObject:String = "CRYSTAL_TYPE_1_NO_OBJECT";	// объект ячейки
 		
 		public function FieldCell() 
 		{
 			this.addEventListener(MouseEvent.CLICK, onMouseClick);
 			this.addEventListener(MouseEvent.MOUSE_OUT, onMouseOut);
 			this.addEventListener(MouseEvent.MOUSE_OVER, onMouseOver);
-			this.addChild(cell);
+			this.addChild(_cell);
 		}
 		
 		private function onMouseOver(e:MouseEvent):void 
@@ -55,7 +56,10 @@ package MapEditor
 		private function onMouseClick(e:MouseEvent):void 
 		{
 			if (Resource.SelectObject != "SELECT_NO_OBJECT") {
-				
+				if (Resource.SelectObject == "CRYSTAL_TYPE_1_VIOLET") {
+					_object = new Resource.CImage1();
+					this.addChild(_object);
+				}
 			}
 		}
 		

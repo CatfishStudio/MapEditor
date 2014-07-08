@@ -224,24 +224,64 @@ package MapEditor
 			/* Ячейки и объекты */
 			sCell.addChild(cell);
 			sCell.x = 950; sCell.y = 400;
+			sCell.addEventListener(MouseEvent.CLICK, onMouseClickCell);
+			sCell.addEventListener(MouseEvent.MOUSE_OUT, onMouseOut);
+			sCell.addEventListener(MouseEvent.MOUSE_OVER, onMouseOver);
 			this.addChild(sCell);
 			
 			sEmpty.addChild(empty);
 			sEmpty.x = 950; sEmpty.y = 460;
+			sEmpty.addEventListener(MouseEvent.CLICK, onMouseClickEmpty);
+			sEmpty.addEventListener(MouseEvent.MOUSE_OUT, onMouseOut);
+			sEmpty.addEventListener(MouseEvent.MOUSE_OVER, onMouseOver);
 			this.addChild(sEmpty);
 			
 			sDrop.addChild(drop);
 			sDrop.x = 950; sDrop.y = 520;
+			sDrop.addEventListener(MouseEvent.CLICK, onMouseClickDrop);
+			sDrop.addEventListener(MouseEvent.MOUSE_OUT, onMouseOut);
+			sDrop.addEventListener(MouseEvent.MOUSE_OVER, onMouseOver);
 			this.addChild(sDrop);
 			
 			sRune.addChild(rune);
 			sRune.x = 950; sRune.y = 580;
+			sRune.addEventListener(MouseEvent.CLICK, onMouseClickRune);
+			sRune.addEventListener(MouseEvent.MOUSE_OUT, onMouseOut);
+			sRune.addEventListener(MouseEvent.MOUSE_OVER, onMouseOver);
 			this.addChild(sRune);
 			
 			sStone.addChild(stone);
 			sStone.x = 950; sStone.y = 640;
+			sStone.addEventListener(MouseEvent.CLICK, onMouseClickStone);
+			sStone.addEventListener(MouseEvent.MOUSE_OUT, onMouseOut);
+			sStone.addEventListener(MouseEvent.MOUSE_OVER, onMouseOver);
 			this.addChild(sStone);
 			/*---------------------------------------------------------------------------------*/
+		}
+		
+		private function onMouseClickStone(e:MouseEvent):void 
+		{
+			Resource.SelectObject = "CRYSTAL_TYPE_9_STONE";
+		}
+		
+		private function onMouseClickRune(e:MouseEvent):void 
+		{
+			Resource.SelectObject = "CRYSTAL_TYPE_10_RUNE";
+		}
+		
+		private function onMouseClickDrop(e:MouseEvent):void 
+		{
+			Resource.SelectObject = "CELL_TYPE_DROP";
+		}
+		
+		private function onMouseClickEmpty(e:MouseEvent):void 
+		{
+			Resource.SelectObject = "CELL_TYPE_EMPTY";
+		}
+		
+		private function onMouseClickCell(e:MouseEvent):void 
+		{
+			Resource.SelectObject = "CELL_TYPE_CLEAR";
 		}
 		
 		/* Желтый */
