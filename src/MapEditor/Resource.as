@@ -107,6 +107,7 @@ package MapEditor
 		public static var AmountMoves:String;	// количество ходов
 		public static var FileAtlas:String;		// имя файла атласа
 		public static var FileAtlasXML:String;	// имя файла атласа xml
+		public static var BackgroundAtlas:String;	// имя фонового изображения на уровне из атласа
 		public static var IntensityColumn0:String;	// интенсивность выпадения кристалов колонка 0
 		public static var IntensityColumn1:String;	// интенсивность выпадения кристалов колонка 1
 		public static var IntensityColumn2:String;	// интенсивность выпадения кристалов колонка 2
