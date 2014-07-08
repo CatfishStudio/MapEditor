@@ -77,9 +77,20 @@ package MapEditor
 			{label:"2-Зеленый", data:"CRYSTAL_TYPE_2_GREEN"}, 
 			{label:"3-Красный", data:"CRYSTAL_TYPE_3_RED"}, 
 			{label:"4-Синий", data:"CRYSTAL_TYPE_4_BLUE" }, 
+			{label:"5-Желтый", data:"CRYSTAL_TYPE_5_YELLOW" }, 
 			{label:"6-Линейный вертикаль", data:"CRYSTAL_TYPE_6_LINE_UPRIGHT"},
 			{label:"7-Линейный горизонталь", data:"CRYSTAL_TYPE_7_LINE_HORIZONTALLY"},
-			{label:"8-Супер кристал", data:"CRYSTAL_TYPE_8_SUPER"}
+			{label:"8-Супер кристал", data:"CRYSTAL_TYPE_8_SUPER" },
+			{label:"9-Не собирать", data:"CRYSTAL_TYPE_9_NO" }
+		);
+		
+		public static var crystalIntensive:Array = new Array( 
+			{label:"Все кристалы", data:"CRYSTAL_TYPE_ALL"},
+			{label:"1-Фиолетовый", data:"CRYSTAL_TYPE_1_VIOLET"}, 
+			{label:"2-Зеленый", data:"CRYSTAL_TYPE_2_GREEN"}, 
+			{label:"3-Красный", data:"CRYSTAL_TYPE_3_RED"}, 
+			{label:"4-Синий", data:"CRYSTAL_TYPE_4_BLUE" }, 
+			{label:"5-Желтый", data:"CRYSTAL_TYPE_5_YELLOW" } 
 		);
 		
 		/* Выбраный объект */

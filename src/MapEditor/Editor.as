@@ -38,6 +38,7 @@ package MapEditor
 				"6-Линейный кристал вертикаль" - "CRYSTAL_TYPE_6_LINE_UPRIGHT"
 				"7-Линейный кристал горизонталь" - "CRYSTAL_TYPE_7_LINE_HORIZONTALLY"
 				"8-Супер кристал" - "CRYSTAL_TYPE_8_SUPER"
+				"9-Не собирать" - "CRYSTAL_TYPE_9_NO"
 		 * 5. Количество кристалов: 0
 		 * 6. Количество очков: 0
 		 * 7. Время на уровне: 0
@@ -67,9 +68,6 @@ package MapEditor
 				"3-Красный" - "CRYSTAL_TYPE_3_RED" 
 				"4-Синий" - "CRYSTAL_TYPE_4_BLUE" 
 				"5-Желтый" - "CRYSTAL_TYPE_5_YELLOW"
-				"6-Линейный кристал вертикаль" - "CRYSTAL_TYPE_6_LINE_UPRIGHT"
-				"7-Линейный кристал горизонталь" - "CRYSTAL_TYPE_7_LINE_HORIZONTALLY"
-				"8-Супер кристал" - "CRYSTAL_TYPE_8_SUPER"
 		 * 
 		 * -------------------------------------
 		 * */
@@ -98,6 +96,8 @@ package MapEditor
 		private var textBox9:TextInput = new TextInput();
 		private var label10:Label = new Label();
 		private var textBox10:TextInput = new TextInput();
+		private var label20:Label = new Label();
+		private var textBox11:TextInput = new TextInput();
 		
 				
 		private var label12:Label = new Label();
@@ -227,7 +227,7 @@ package MapEditor
 			label9.text = "Имя атласа:";
 			label9.x = 20; label9.y = 500;
 			this.addChild(label9);
-			/* Количество ходов*/
+			/* имя файла*/
 			textBox9.text = "*.png";
 			textBox9.x = 20; textBox9.y = 520;
 			textBox9.width = 200;
@@ -237,11 +237,21 @@ package MapEditor
 			label10.text = "Имя XML атласа:";
 			label10.x = 20; label10.y = 550;
 			this.addChild(label10);
-			/* Количество ходов*/
+			/* имя файла */
 			textBox10.text = "*.xml";
 			textBox10.x = 20; textBox10.y = 570;
 			textBox10.width = 200;
 			this.addChild(textBox10);
+			
+			/* Метка */
+			label20.text = "Имя фона в атласе:";
+			label20.x = 20; label20.y = 600;
+			this.addChild(label20);
+			/* имя файла */
+			textBox11.text = "";
+			textBox11.x = 20; textBox11.y = 620;
+			textBox11.width = 200;
+			this.addChild(textBox11);
 			
 			/* ПАНЕЛЬ ОБЪЕКТОВ */
 			this.addChild(new PanelObjects());
@@ -257,61 +267,61 @@ package MapEditor
 			/* Интентивность колонки */
 			comboBox10.x = 300; comboBox10.y = 570;
 			comboBox10.dropdownWidth = 50; 	comboBox10.width = 50;  
-			comboBox10.selectedIndex = 0; comboBox10.dataProvider = new DataProvider(Resource.crystalType); 
+			comboBox10.selectedIndex = 0; comboBox10.dataProvider = new DataProvider(Resource.crystalIntensive); 
 			comboBox10.addEventListener(Event.CHANGE, changeHandler10);
 			this.addChild(comboBox10);
 			/* Интентивность колонки */
 			comboBox11.x = 350; comboBox11.y = 570;
 			comboBox11.dropdownWidth = 50; 	comboBox11.width = 50;  
-			comboBox11.selectedIndex = 0; comboBox11.dataProvider = new DataProvider(Resource.crystalType); 
+			comboBox11.selectedIndex = 0; comboBox11.dataProvider = new DataProvider(Resource.crystalIntensive); 
 			comboBox11.addEventListener(Event.CHANGE, changeHandler11);
 			this.addChild(comboBox11);
 			/* Интентивность колонки */
 			comboBox12.x = 400; comboBox12.y = 570;
 			comboBox12.dropdownWidth = 50; 	comboBox12.width = 50;  
-			comboBox12.selectedIndex = 0; comboBox12.dataProvider = new DataProvider(Resource.crystalType); 
+			comboBox12.selectedIndex = 0; comboBox12.dataProvider = new DataProvider(Resource.crystalIntensive); 
 			comboBox12.addEventListener(Event.CHANGE, changeHandler12);
 			this.addChild(comboBox12);
 			/* Интентивность колонки */
 			comboBox13.x = 450; comboBox13.y = 570;
 			comboBox13.dropdownWidth = 50; 	comboBox13.width = 50;  
-			comboBox13.selectedIndex = 0; comboBox13.dataProvider = new DataProvider(Resource.crystalType); 
+			comboBox13.selectedIndex = 0; comboBox13.dataProvider = new DataProvider(Resource.crystalIntensive); 
 			comboBox13.addEventListener(Event.CHANGE, changeHandler13);
 			this.addChild(comboBox13);
 			/* Интентивность колонки */
 			comboBox14.x = 500; comboBox14.y = 570;
 			comboBox14.dropdownWidth = 50; 	comboBox14.width = 50;  
-			comboBox14.selectedIndex = 0; comboBox14.dataProvider = new DataProvider(Resource.crystalType); 
+			comboBox14.selectedIndex = 0; comboBox14.dataProvider = new DataProvider(Resource.crystalIntensive); 
 			comboBox14.addEventListener(Event.CHANGE, changeHandler14);
 			this.addChild(comboBox14);
 			/* Интентивность колонки */
 			comboBox15.x = 550; comboBox15.y = 570;
 			comboBox15.dropdownWidth = 50; 	comboBox15.width = 50;  
-			comboBox15.selectedIndex = 0; comboBox15.dataProvider = new DataProvider(Resource.crystalType); 
+			comboBox15.selectedIndex = 0; comboBox15.dataProvider = new DataProvider(Resource.crystalIntensive); 
 			comboBox15.addEventListener(Event.CHANGE, changeHandler15);
 			this.addChild(comboBox15);
 			/* Интентивность колонки */
 			comboBox16.x = 600; comboBox16.y = 570;
 			comboBox16.dropdownWidth = 50; 	comboBox16.width = 50;  
-			comboBox16.selectedIndex = 0; comboBox16.dataProvider = new DataProvider(Resource.crystalType); 
+			comboBox16.selectedIndex = 0; comboBox16.dataProvider = new DataProvider(Resource.crystalIntensive); 
 			comboBox16.addEventListener(Event.CHANGE, changeHandler16);
 			this.addChild(comboBox16);
 			/* Интентивность колонки */
 			comboBox17.x = 650; comboBox17.y = 570;
 			comboBox17.dropdownWidth = 50; 	comboBox17.width = 50;  
-			comboBox17.selectedIndex = 0; comboBox17.dataProvider = new DataProvider(Resource.crystalType); 
+			comboBox17.selectedIndex = 0; comboBox17.dataProvider = new DataProvider(Resource.crystalIntensive); 
 			comboBox17.addEventListener(Event.CHANGE, changeHandler17);
 			this.addChild(comboBox17);
 			/* Интентивность колонки */
 			comboBox18.x = 700; comboBox18.y = 570;
 			comboBox18.dropdownWidth = 50; 	comboBox18.width = 50;  
-			comboBox18.selectedIndex = 0; comboBox18.dataProvider = new DataProvider(Resource.crystalType); 
+			comboBox18.selectedIndex = 0; comboBox18.dataProvider = new DataProvider(Resource.crystalIntensive); 
 			comboBox18.addEventListener(Event.CHANGE, changeHandler18);
 			this.addChild(comboBox18);
 			/* Интентивность колонки */
 			comboBox19.x = 750; comboBox19.y = 570;
 			comboBox19.dropdownWidth = 50; 	comboBox19.width = 50;  
-			comboBox19.selectedIndex = 0; comboBox19.dataProvider = new DataProvider(Resource.crystalType); 
+			comboBox19.selectedIndex = 0; comboBox19.dataProvider = new DataProvider(Resource.crystalIntensive); 
 			comboBox19.addEventListener(Event.CHANGE, changeHandler19);
 			this.addChild(comboBox19);
 		}
@@ -347,6 +357,7 @@ package MapEditor
 		
 		private function changeHandler1(e:Event):void { 
 			comboBox1.text = ComboBox(e.target).selectedItem.label;
+			/*
 			if (ComboBox(e.target).selectedItem.label == "Собрать кристалы")
 			{
 				comboBox2.enabled = true;
@@ -355,6 +366,7 @@ package MapEditor
 				comboBox2.enabled = false;
 				textBox6.enabled = false;
 			}
+			*/
 		}
 		
 		private function changeHandler2(e:Event):void 
