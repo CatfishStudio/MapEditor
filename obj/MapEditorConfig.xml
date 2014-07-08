@@ -32,15 +32,15 @@
     </define>
     <verbose-stacktraces>true</verbose-stacktraces>
     <source-path append="true">
-      <path-element>C:\GIT\MapEditor\src</path-element>
+      <path-element>C:\Program Code\Git\MapEditor\src</path-element>
       <path-element>C:\Program Files (x86)\FlashDevelop\Library\AS3\classes</path-element>
     </source-path>
     <library-path append="true">
-      <path-element>C:\GIT\MapEditor\lib\all-component.swc</path-element>
+      <path-element>C:\Program Code\Git\MapEditor\lib\all-component.swc</path-element>
     </library-path>
   </compiler>
   <file-specs>
-    <path-element>C:\GIT\MapEditor\src\MapEditor\Main.as</path-element>
+    <path-element>C:\Program Code\Git\MapEditor\src\MapEditor\Main.as</path-element>
   </file-specs>
   <default-background-color>#FFFFFF</default-background-color>
   <default-frame-rate>30</default-frame-rate>
