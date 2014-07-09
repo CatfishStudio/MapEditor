@@ -79,6 +79,8 @@ package MapEditor
 	
 	public class Editor extends Sprite 
 	{
+		private var fileRef:FileReference; // работа с файном
+		
 		private var button1:Button = new Button();
 		private var button2:Button = new Button();
 		private var label1:Label = new Label();
@@ -333,15 +335,26 @@ package MapEditor
 			this.addChild(comboBox19);
 		}
 		
-		/* Открыть файл */
+		/* Открыть файл ----------------------------------------------- */
 		private function onButton1MouseClick(e:MouseEvent):void 
 		{
+			fileRef = new FileReference();
+			fileRef.addEventListener(Event.SELECT, selectFileDialog);
+			fileRef.browse();
+		}
+		
+		private function selectFileDialog(e:Event):void 
+		{
 			openFile = new URLLoader();
-			openFile.load(new URLRequest("*.xml"));
+			openFile.load(new URLRequest(""));
 			openFile.addEventListener(Event.COMPLETE,onCompleteOpenFile);
 			openFile.addEventListener(SecurityErrorEvent.SECURITY_ERROR,securityError);
-			openFile.addEventListener(IOErrorEvent.IO_ERROR,ioError); 
-			
+			openFile.addEventListener(IOErrorEvent.IO_ERROR, ioError); 
+			trace(fileRef.name);
+		}
+		
+		private function onCompleteOpenFile(e:Event):void 
+		{
 			Resource.Level = textBox1.text;
 			Resource.Location = textBox2.text
 			Resource.LevelType = comboBox1.selectedItem.data;
@@ -364,8 +377,16 @@ package MapEditor
 			Resource.IntensityColumn8 = comboBox18.selectedItem.data;
 			Resource.IntensityColumn9 = comboBox19.selectedItem.data;
 		}
+		private function securityError(e:SecurityErrorEvent):void
+		{
+			trace("SecurityErrorEvent");
+		}
+		private function ioError(e:IOErrorEvent):void
+		{
+			trace("IOErrorEvent");
+		} 
 		
-		/* Сохранить файл */
+		/* Сохранить файл ----------------------------------------------- */
 		private function onButton2MouseClick(e:MouseEvent):void 
 		{
 			Resource.Level = textBox1.text;
@@ -391,7 +412,7 @@ package MapEditor
 			Resource.IntensityColumn9 = comboBox19.selectedItem.data;
 			
 			var bytes:ByteArray = new ByteArray();
-			var fileRef:FileReference = new FileReference();
+			fileRef = new FileReference();
 			bytes.writeMultiByte("<levelNumber>", "iso-8859-1");
 			bytes.writeMultiByte(Resource.Level, "iso-8859-1");
 			bytes.writeMultiByte("</levelNumber>\n", "iso-8859-1");
@@ -474,8 +495,6 @@ package MapEditor
 						bytes.writeMultiByte("</cellRow>\n", "iso-8859-1");
 					bytes.writeMultiByte("</cell>\n", "iso-8859-1");
 					
-					(Resource.MatrixCell[i][j] as FieldCell).x = 300 + (50 * i);
-					(Resource.MatrixCell[i][j] as FieldCell).y = 50 + (50 * j);
 				}
 			}
 			
@@ -484,19 +503,6 @@ package MapEditor
 			
 		}
 		
-		/* Обработка загрузки файла */
-		private function onCompleteOpenFile(e:Event):void 
-		{
-			
-		}
-		private function securityError(e:SecurityErrorEvent):void
-		{
-			trace("SecurityErrorEvent");
-		}
-		private function ioError(e:IOErrorEvent):void
-		{
-			trace("IOErrorEvent");
-		} 
 		
 		
 		private function changeHandler1(e:Event):void { 
