@@ -264,8 +264,8 @@ package MapEditor
 			this.addChild(new PanelObjects());
 			
 			/* ИГРОВОЕ ПОЛЕ */
-			Resource.MatrixCell =  Resource.CreateVectorMatrix2D(10, 10);
-			showField(10, 10);
+			Resource.MatrixCell =  Resource.CreateVectorMatrix2D(Resource.COLUMNS, Resource.ROWS);
+			showField(Resource.COLUMNS, Resource.ROWS);
 			
 			/* Метка */
 			label12.text = "Интенсивность выпадения кристалов:";
@@ -456,7 +456,28 @@ package MapEditor
 			bytes.writeMultiByte(Resource.IntensityColumn9, "iso-8859-1");
 			bytes.writeMultiByte("</intensityColumn9>\n", "iso-8859-1");
 			
-			
+			/* i - столбец; j - строка */
+			for (var i:uint = 0; i < Resource.COLUMNS; i++) {
+				for (var j:uint = 0; j < Resource.ROWS; j++) {
+					bytes.writeMultiByte("<cell" + i.toString() + "_" + j.toString() + ">\n", "iso-8859-1");
+						bytes.writeMultiByte("<cellType>", "iso-8859-1");
+						bytes.writeMultiByte((Resource.MatrixCell[i][j] as FieldCell).cellType, "iso-8859-1");
+						bytes.writeMultiByte("</cellType>\n", "iso-8859-1");
+						bytes.writeMultiByte("<cellObject>", "iso-8859-1");
+						bytes.writeMultiByte((Resource.MatrixCell[i][j] as FieldCell).cellObject, "iso-8859-1");
+						bytes.writeMultiByte("</cellObject>\n", "iso-8859-1");
+						bytes.writeMultiByte("<cellColumn>", "iso-8859-1");
+						bytes.writeMultiByte(i.toString(), "iso-8859-1");
+						bytes.writeMultiByte("</cellColumn>\n", "iso-8859-1");
+						bytes.writeMultiByte("<cellRow>", "iso-8859-1");
+						bytes.writeMultiByte(j.toString(), "iso-8859-1");
+						bytes.writeMultiByte("</cellRow>\n", "iso-8859-1");
+					bytes.writeMultiByte("</cell>\n", "iso-8859-1");
+					
+					(Resource.MatrixCell[i][j] as FieldCell).x = 300 + (50 * i);
+					(Resource.MatrixCell[i][j] as FieldCell).y = 50 + (50 * j);
+				}
+			}
 			
 			fileRef.save(bytes,"savedata.xml");
 			

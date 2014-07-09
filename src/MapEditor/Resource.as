@@ -64,6 +64,10 @@ package MapEditor
 		[Embed(source = '../../images/stone.png')]
 		public static var StoneImage:Class;
 		
+		/* Костанты */
+		public static const COLUMNS:int = 10;
+		public static const ROWS:int = 10;
+		
 		public static var levelType:Array = new Array( 
 			{label:"Собрать кристалы", data:"LEVEL_TYPE_COLLECT"}, 
 			{label:"Набрать очки", data:"LEVEL_TYPE_SCORE_POINTS"}, 
