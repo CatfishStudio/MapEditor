@@ -7,7 +7,11 @@ package MapEditor
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.events.IOErrorEvent;
 	import flash.events.MouseEvent;
+	import flash.events.SecurityErrorEvent;
+	import flash.net.FileReference;
+	import flash.net.URLLoader;
 	import flash.ui.Mouse;
 	import flash.ui.MouseCursor;
 	import fl.data.DataProvider; 
@@ -16,6 +20,7 @@ package MapEditor
 	import flash.net.navigateToURL; 
 	import flash.net.Responder;
 	import flash.net.URLRequest;
+	import flash.utils.ByteArray;
 	import MapEditor.Resource;
 	
 	/*
@@ -111,6 +116,8 @@ package MapEditor
 		private var comboBox17:ComboBox = new ComboBox();
 		private var comboBox18:ComboBox = new ComboBox();
 		private var comboBox19:ComboBox = new ComboBox();
+		
+		private var openFile:URLLoader; // открытие XML файла
 		
 		public function Editor() 
 		{
@@ -326,8 +333,15 @@ package MapEditor
 			this.addChild(comboBox19);
 		}
 		
+		/* Открыть файл */
 		private function onButton1MouseClick(e:MouseEvent):void 
 		{
+			openFile = new URLLoader();
+			openFile.load(new URLRequest("*.xml"));
+			openFile.addEventListener(Event.COMPLETE,onCompleteOpenFile);
+			openFile.addEventListener(SecurityErrorEvent.SECURITY_ERROR,securityError);
+			openFile.addEventListener(IOErrorEvent.IO_ERROR,ioError); 
+			
 			Resource.Level = textBox1.text;
 			Resource.Location = textBox2.text
 			Resource.LevelType = comboBox1.selectedItem.data;
@@ -338,8 +352,20 @@ package MapEditor
 			Resource.AmountMoves = textBox4.text;
 			Resource.FileAtlas = textBox9.text;
 			Resource.FileAtlasXML = textBox10.text;
+			Resource.BackgroundAtlas = textBox11.text;
+			Resource.IntensityColumn0 = comboBox10.selectedItem.data;
+			Resource.IntensityColumn1 = comboBox11.selectedItem.data;
+			Resource.IntensityColumn2 = comboBox12.selectedItem.data;
+			Resource.IntensityColumn3 = comboBox13.selectedItem.data;
+			Resource.IntensityColumn4 = comboBox14.selectedItem.data;
+			Resource.IntensityColumn5 = comboBox15.selectedItem.data;
+			Resource.IntensityColumn6 = comboBox16.selectedItem.data;
+			Resource.IntensityColumn7 = comboBox17.selectedItem.data;
+			Resource.IntensityColumn8 = comboBox18.selectedItem.data;
+			Resource.IntensityColumn9 = comboBox19.selectedItem.data;
 		}
 		
+		/* Сохранить файл */
 		private function onButton2MouseClick(e:MouseEvent):void 
 		{
 			Resource.Level = textBox1.text;
@@ -352,7 +378,104 @@ package MapEditor
 			Resource.AmountMoves = textBox4.text;
 			Resource.FileAtlas = textBox9.text;
 			Resource.FileAtlasXML = textBox10.text;
+			Resource.BackgroundAtlas = textBox11.text;
+			Resource.IntensityColumn0 = comboBox10.selectedItem.data;
+			Resource.IntensityColumn1 = comboBox11.selectedItem.data;
+			Resource.IntensityColumn2 = comboBox12.selectedItem.data;
+			Resource.IntensityColumn3 = comboBox13.selectedItem.data;
+			Resource.IntensityColumn4 = comboBox14.selectedItem.data;
+			Resource.IntensityColumn5 = comboBox15.selectedItem.data;
+			Resource.IntensityColumn6 = comboBox16.selectedItem.data;
+			Resource.IntensityColumn7 = comboBox17.selectedItem.data;
+			Resource.IntensityColumn8 = comboBox18.selectedItem.data;
+			Resource.IntensityColumn9 = comboBox19.selectedItem.data;
+			
+			var bytes:ByteArray = new ByteArray();
+			var fileRef:FileReference = new FileReference();
+			bytes.writeMultiByte("<levelNumber>", "iso-8859-1");
+			bytes.writeMultiByte(Resource.Level, "iso-8859-1");
+			bytes.writeMultiByte("</levelNumber>\n", "iso-8859-1");
+			bytes.writeMultiByte("<locationNumber>", "iso-8859-1");
+			bytes.writeMultiByte(Resource.Location, "iso-8859-1");
+			bytes.writeMultiByte("</locationNumber>\n", "iso-8859-1");
+			bytes.writeMultiByte("<levelType>", "iso-8859-1");
+			bytes.writeMultiByte(Resource.LevelType, "iso-8859-1");
+			bytes.writeMultiByte("</levelType>\n", "iso-8859-1");
+			bytes.writeMultiByte("<crystalType>", "iso-8859-1");
+			bytes.writeMultiByte(Resource.CrystalType, "iso-8859-1");
+			bytes.writeMultiByte("</crystalType>\n", "iso-8859-1");
+			bytes.writeMultiByte("<amountCrystals>", "iso-8859-1");
+			bytes.writeMultiByte(Resource.AmountCrystals, "iso-8859-1");
+			bytes.writeMultiByte("</amountCrystals>\n", "iso-8859-1");
+			bytes.writeMultiByte("<amountScore>", "iso-8859-1");
+			bytes.writeMultiByte(Resource.AmountScore, "iso-8859-1");
+			bytes.writeMultiByte("</amountScore>\n", "iso-8859-1");
+			bytes.writeMultiByte("<time>", "iso-8859-1");
+			bytes.writeMultiByte(Resource.Time, "iso-8859-1");
+			bytes.writeMultiByte("</time>\n", "iso-8859-1");
+			bytes.writeMultiByte("<amountMoves>", "iso-8859-1");
+			bytes.writeMultiByte(Resource.AmountMoves, "iso-8859-1");
+			bytes.writeMultiByte("</amountMoves>\n", "iso-8859-1");
+			bytes.writeMultiByte("<fileAtlas>", "iso-8859-1");
+			bytes.writeMultiByte(Resource.FileAtlas, "iso-8859-1");
+			bytes.writeMultiByte("</fileAtlas>\n", "iso-8859-1");
+			bytes.writeMultiByte("<fileAtlasXML>", "iso-8859-1");
+			bytes.writeMultiByte(Resource.FileAtlasXML, "iso-8859-1");
+			bytes.writeMultiByte("</fileAtlasXML>\n", "iso-8859-1");
+			bytes.writeMultiByte("<backgroundAtlas>", "iso-8859-1");
+			bytes.writeMultiByte(Resource.BackgroundAtlas, "iso-8859-1");
+			bytes.writeMultiByte("</backgroundAtlas>\n", "iso-8859-1");
+			bytes.writeMultiByte("<intensityColumn0>", "iso-8859-1");
+			bytes.writeMultiByte(Resource.IntensityColumn0, "iso-8859-1");
+			bytes.writeMultiByte("</intensityColumn0>\n", "iso-8859-1");
+			bytes.writeMultiByte("<intensityColumn1>", "iso-8859-1");
+			bytes.writeMultiByte(Resource.IntensityColumn1, "iso-8859-1");
+			bytes.writeMultiByte("</intensityColumn1>\n", "iso-8859-1");
+			bytes.writeMultiByte("<intensityColumn2>", "iso-8859-1");
+			bytes.writeMultiByte(Resource.IntensityColumn2, "iso-8859-1");
+			bytes.writeMultiByte("</intensityColumn2>\n", "iso-8859-1");
+			bytes.writeMultiByte("<intensityColumn3>", "iso-8859-1");
+			bytes.writeMultiByte(Resource.IntensityColumn3, "iso-8859-1");
+			bytes.writeMultiByte("</intensityColumn3>\n", "iso-8859-1");
+			bytes.writeMultiByte("<intensityColumn4>", "iso-8859-1");
+			bytes.writeMultiByte(Resource.IntensityColumn4, "iso-8859-1");
+			bytes.writeMultiByte("</intensityColumn4>\n", "iso-8859-1");
+			bytes.writeMultiByte("<intensityColumn5>", "iso-8859-1");
+			bytes.writeMultiByte(Resource.IntensityColumn5, "iso-8859-1");
+			bytes.writeMultiByte("</intensityColumn5>\n", "iso-8859-1");
+			bytes.writeMultiByte("<intensityColumn6>", "iso-8859-1");
+			bytes.writeMultiByte(Resource.IntensityColumn6, "iso-8859-1");
+			bytes.writeMultiByte("</intensityColumn6>\n", "iso-8859-1");
+			bytes.writeMultiByte("<intensityColumn7>", "iso-8859-1");
+			bytes.writeMultiByte(Resource.IntensityColumn7, "iso-8859-1");
+			bytes.writeMultiByte("</intensityColumn7>\n", "iso-8859-1");
+			bytes.writeMultiByte("<intensityColumn8>", "iso-8859-1");
+			bytes.writeMultiByte(Resource.IntensityColumn8, "iso-8859-1");
+			bytes.writeMultiByte("</intensityColumn8>\n", "iso-8859-1");
+			bytes.writeMultiByte("<intensityColumn9>", "iso-8859-1");
+			bytes.writeMultiByte(Resource.IntensityColumn9, "iso-8859-1");
+			bytes.writeMultiByte("</intensityColumn9>\n", "iso-8859-1");
+			
+			
+			
+			fileRef.save(bytes,"savedata.xml");
+			
+			
 		}
+		
+		/* Обработка загрузки файла */
+		private function onCompleteOpenFile(e:Event):void 
+		{
+			
+		}
+		private function securityError(e:SecurityErrorEvent):void
+		{
+			trace("SecurityErrorEvent");
+		}
+		private function ioError(e:IOErrorEvent):void
+		{
+			trace("IOErrorEvent");
+		} 
 		
 		
 		private function changeHandler1(e:Event):void { 
