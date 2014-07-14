@@ -80,6 +80,7 @@ package MapEditor
 	public class Editor extends Sprite 
 	{
 		private var fileRef:FileReference; // работа с файном
+		private var openFile:URLLoader; // открытие XML файла
 		
 		private var button1:Button = new Button();
 		private var button2:Button = new Button();
@@ -119,8 +120,7 @@ package MapEditor
 		private var comboBox18:ComboBox = new ComboBox();
 		private var comboBox19:ComboBox = new ComboBox();
 		
-		private var openFile:URLLoader; // открытие XML файла
-		
+				
 		public function Editor() 
 		{
 			super();
@@ -346,15 +346,16 @@ package MapEditor
 		private function selectFileDialog(e:Event):void 
 		{
 			openFile = new URLLoader();
-			openFile.load(new URLRequest(""));
+			openFile.load(new URLRequest(fileRef.name));
 			openFile.addEventListener(Event.COMPLETE,onCompleteOpenFile);
 			openFile.addEventListener(SecurityErrorEvent.SECURITY_ERROR,securityError);
 			openFile.addEventListener(IOErrorEvent.IO_ERROR, ioError); 
-			trace(fileRef.name);
 		}
 		
 		private function onCompleteOpenFile(e:Event):void 
 		{
+			
+			
 			Resource.Level = textBox1.text;
 			Resource.Location = textBox2.text
 			Resource.LevelType = comboBox1.selectedItem.data;
